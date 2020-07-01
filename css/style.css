@@ -1,0 +1,143 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.custom {
+  height: 100%;
+  float: right;
+  margin-bottom: 20px;
+
+}
+
+.custom2 {
+
+  float: right;
+  margin-bottom: 20px;
+}
+
+.custom3 {
+
+  float: right;
+  margin-bottom: 20px;
+}
+
+.space {
+  height: 100px;
+
+}
+
+.space2 {
+  height: 100px;
+
+
+}
+
+
+
+
+.login-box {
+
+  /* top: 50%;
+     left: 50%;   */
+  /* width: 300px; */
+  padding: 30px;
+  margin-top: 30px;
+  /* transform: translate(-50%, -50%); */
+  background: rgba(0, 0, 0, .5);
+  box-sizing: border-box;
+  box-shadow: 0 10px 15px 10px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: rgb(233, 230, 44);
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box select {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 1s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+#output {
+  color: #fff;
+  margin-top: 100%;
+}
+
+
+
+.example_e {
+  border: none;
+  background: rgba(0, 0, 0, .5);
+  color: #ffffff !important;
+  font-weight: 100;
+  border: 3px solid #f3f731;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  margin-left: 28%;
+}
+
+.example_e:hover {
+  color: #4cbae6 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(51, 155, 224, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(55, 172, 226, 0.57);
+  transition: all 0.3s ease 0s;
+}

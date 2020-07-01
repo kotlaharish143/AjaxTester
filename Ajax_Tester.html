@@ -1,0 +1,203 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+
+   <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"
+     integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+ </head>
+
+ <body>
+   <div class="container">
+     <div class="row">
+
+       <div class=" col-md-5 w-90 ">
+         <div class="space"></div>
+         <div class="login-box ">
+           <h2>AJAX Tester</h2>
+           <form>
+             <div class="user-box">
+               <input type="text" name="url" required="">
+               <label>Url</label>
+             </div>
+             <!-- <div class="user-box">
+                <input type="password" name="" required="">
+                <label>Password</label> -->
+
+             <div class="user-box ">
+               <select id="resource">
+                 <option value="Fetch">fetch</option>
+                 <option value="XHR">xhr</option>
+                 <option value="Ajax">Ajax<Ajax/option> <option value="Axios">Axios</option>
+
+               </select>
+             </div>
+             <div class="button_cont" allign="center"><a class="example_e" id="but" target="_blank"
+                 rel="nofollow noopener">GetData</a></div>
+           </form>
+         </div>
+       </div>
+
+
+       <div class="col-md-7  text-center ">
+
+         <div class="space2"></div>
+         <div class="card">
+           <div class="custom1">
+             <div class="card-header h">
+               Response Text
+             </div>
+             <div class="card-body">
+               <h5 class="card-title"> Result from URL</h5>
+               <p class="card-text">The response object will be displayed here</p>
+
+             </div>
+           </div>
+
+           <div class="custom2">
+             <div class="card-header h">
+               Status
+             </div>
+             <div class="card-body">
+
+               <p class="card-text">The status of your request will be displayed here</p>
+
+             </div>
+           </div>
+
+
+           <div class="custom3">
+             <div class="card-header h">
+               Response Type
+             </div>
+             <div class="card-body">
+
+               <p class="card-text">The Response Type of your request will be displayed here</p>
+
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+
+   </div>
+
+
+
+
+
+
+
+
+ </body>
+ <script>
+   document.addEventListener('DOMContentLoaded', function (event) {
+     document.getElementById('but').addEventListener('click', makeRequest)
+
+   })
+
+   function makeRequest() {
+     var url = document.querySelector('input[name="url"]').value
+     var resource = document.querySelector('#resource').value
+     switch (resource) {
+       case "Ajax":
+         ajaxJQ(url);
+         break;
+       case "Fetch":
+         Fetch(url);
+         break;
+       case "Axios":
+         Axios(url);
+         break;
+       default:
+         ajaxJS(url);
+         break;
+     }
+
+   }
+
+
+
+   function ajaxJQ(url) {
+     $.ajax({
+       method: 'GET',
+       url: url,
+       success: function (data) {
+         console.log(data)
+
+       }
+     }).done(function (res) {
+       output(res, res.status, "Ajax request succesful using Jquery")
+     })
+
+   }
+
+   function Fetch(url) {
+     fetch(url, {
+       method: "GET"
+     }).then(function (response) {
+       return response.json()
+       console.log(response)
+     }).catch(function (e) {
+       return Output(e, 404, "Fetch Failed")
+     }).then(function (response) {
+       output(response, "200", "Ajax request succesful using Fetch")
+     })
+   }
+
+   function Axios(url) {
+     axios({
+       method: "GET",
+       url: url
+
+     }).then(function (res) {
+       console.log(res)
+       output(res.data, res.status, "Ajax request succesful using Axios")
+     })
+   }
+
+
+
+   function ajaxJS(url) {
+
+     console.log("started")
+     var xhr = new XMLHttpRequest();
+     xhr.onreadystatechange = function () {
+       console.log('state Changed', xhr.readyState, xhr.status)
+       if (xhr.readyState == 4 && xhr.status == 200) {
+         console.log(xhr)
+         output(xhr.responseText, xhr.status, "Ajax request succesful using Javascript")
+
+       }
+     }
+
+     xhr.open('GET', url, true)
+     xhr.send()
+   }
+
+   function output(responseText, status, Message) {
+     document.querySelector('.space2').style.height = 0;
+     console.log(typeof (responseText))
+     responseText = (typeof (responseText) == 'string') ? JSON.parse(responseText) : responseText
+     var output = document.querySelector('.custom1 p');
+     output.innerText = JSON.stringify(responseText)
+     var out = document.querySelector('.custom2 p');
+     out.innerText = JSON.stringify(status)
+     var message = document.querySelector('.custom3 p');
+     message.innerText = JSON.stringify(Message)
+
+   }
+ </script>
+
+ </html>
